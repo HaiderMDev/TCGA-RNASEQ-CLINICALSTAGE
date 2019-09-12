@@ -8,15 +8,11 @@ patients_clinicalstages.txt
 #patient.stage_event.pathologic_stage
 
 
-#grep for the barcodes and stages from "clinical.txt" that was downloaded from FIREHOSE BROAD, combining the two text files and transposing them. Also removing the old files
+#grep for the barcodes and stages from "clinical.txt" that was downloaded from FIREHOSE BROAD, combining the two text files and transposing them. 
 grep -i -w "patient.samples.sample.portions.portion.analytes.analyte-2.aliquots.aliquot.bcr_aliquot_barcode" ./clinical.txt > ./patiendid_clinical.txt 
 grep -i "patient.stage_event.pathologic_stage" ./clinical.txt > ./patient_stages.txt
 cat ./patiendid_clinical.txt ./patient_stages.txt > ./semipatients_clinicalstages.txt
 datamash transpose < ./semipatients_clinicalstages.txt > ./patients_clinicalstages.txt
-
-rm ./patiendid_clinical.txt 
-rm ./patient_stages.txt
-rm ./semipatients_clinicalstages.txt
 
 
 #Getting the clinical stages for any patient shortlist you may have. The TCGA barcodes for patients are from the "patient.samples.sample.portions.portion.analytes.analyte-2.aliquots.aliquot.bcr_aliquot_barcode" row in 
